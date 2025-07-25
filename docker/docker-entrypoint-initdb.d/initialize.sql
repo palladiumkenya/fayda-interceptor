@@ -10,7 +10,7 @@ CREATE TABLE "public"."patient"(
    "nationalId" character varying(150) NOT NULL,
    "shaNumber" character varying(150) NOT NULL,
    "householdNumber" character varying(150) NOT NULL,
-   "wallet_id" character varying(150) NOT NULL,
+   "walletId" character varying(150) NOT NULL,
    "family" character varying(150) NOT NULL,
    "given" character varying(150) NOT NULL,
    "birthDate" timestamp without time zone NOT NULL,
@@ -22,6 +22,6 @@ CREATE TABLE "public"."patient"(
    "village" character varying(150) NOT NULL,
    "uuid" character varying NOT NULL,
    "otp" character varying(10) NOT NULL,
-   "created_at" timestamp without time zone,
+   "createdAt" timestamp without time zone,
    CONSTRAINT "PK_8dfa510bb29ad31ab2139fbfb99" PRIMARY KEY ("id")
 );
