@@ -52,3 +52,16 @@ export async function createPatient(
     next(error);
   }
 }
+
+export async function deletePatient(
+  req: Request,
+  res: Response,
+  next: NextFunction) {
+    const nationalId = req.params.nationalId
+    try {
+      await patientRepo.delete({ nationalId: nationalId });
+      res.status(200).json({message: `Patient with national ID ${nationalId} has been deleted`});
+    } catch(error) {
+      next(error);
+    }
+}
