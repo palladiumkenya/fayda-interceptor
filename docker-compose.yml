@@ -6,8 +6,8 @@ services:
       - POSTGRES_DB=${POSTGRES_DB:-registry}
       - POSTGRES_USER=${POSTGRES_USER:-postgres}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-nthusi2017}
-    ports:
-      - "5432:5432"   
+    # ports:
+    #   - "5432:5432"   
     restart: always
     volumes:
       - interceptor_db_home:/var/lib/postgresql/data
