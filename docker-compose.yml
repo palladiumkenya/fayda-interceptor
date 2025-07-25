@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:15
+    container_name: interceptor_db
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-registry}
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-nthusi2017}
+    ports:
+      - "5432:5432"   
+    restart: always
+    volumes:
+      - interceptor_db_home:/var/lib/postgresql/data
+      - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d  
+  app:
+    container_name: interceptor_app
+    build: .
+    ports:
+      - "8888:8888"
+    restart: always
+volumes:
+ interceptor_db_home:
+   external: false      
