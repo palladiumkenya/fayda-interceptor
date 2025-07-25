@@ -1,7 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import { Patient } from '../entity/Patient';
-import { forwardPatientLookup } from '../service/openfnRelay';
-import appProperties from '../appProperties';
 import { AppDataSource } from '../dataSource';
 
 const patientRepo = AppDataSource.getRepository(Patient);
@@ -34,15 +32,6 @@ export async function validateOtp(req: Request, res: Response, next: NextFunctio
             status: 'success',
             message: 'OTP validated successfully',
           });
-          // relay patient info to Openfn
-          const response = await forwardPatientLookup({
-            identifierType: 'National ID',
-            identifierNumber: patient.nationalId,
-          });
-          const delay = appProperties.openFnRelayDelay;
-          console.log(`waiting for ${delay}ms.....`);
-          await wait(delay);
-          console.log('delayed openfn response', response);
         }
     } catch (error) {
         next(error);

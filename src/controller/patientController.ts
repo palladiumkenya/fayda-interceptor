@@ -2,8 +2,14 @@ import { Request, Response, NextFunction } from "express";
 import { AppDataSource } from "../dataSource";
 import { Patient } from "../entity/Patient";
 import { patientMapper } from "../entity/patientMapper";
+import { forwardPatientLookup } from '../service/openfnRelay';
 
+import appProperties from '../appProperties';
 const patientRepo = AppDataSource.getRepository(Patient);
+
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 export async function getPatient(
   req: Request,
@@ -16,9 +22,19 @@ export async function getPatient(
     if (!patient) {
       res.status(404).json({ message: "Not found" });
     } else {
-      res.status(200).json(patientMapper(patient));
+      const patientResource = patientMapper(patient);
+      res.status(200).json(patientResource);
+          // relay patient info to Openfn
+          const delay = appProperties.openFnRelayDelay;
+          console.log(`waiting for ${delay}ms.....`);
+          await wait(delay);
+            const response = await forwardPatientLookup({
+            identifierType: 'National ID',
+            identifierNumber: patient.nationalId,
+            patient: patientResource
+          });
+          console.log('delayed openfn response', response);
     }
-    
   } catch (error) {
     next(error);
   }
@@ -38,6 +54,8 @@ export async function createPatient(
 ) {
   try {
     const { nationalId, given, family,  gender, birthDate, phoneNumber, county, subCounty, ward, village, otp } = req.body;
+    const existingPatient = await patientRepo.findOneBy({ nationalId });
+    if(!existingPatient) {
     const shaNumber = `SHA${Math.floor(10000000 + Math.random() * 90000000)}-4`;
     const uuid = crypto.randomUUID();
     const householdNumber = `HH${Math.floor(1e9 + Math.random() * 9e9)}`;
@@ -48,6 +66,10 @@ export async function createPatient(
     const patient = patientRepo.create({ nationalId, uuid, shaNumber, householdNumber, walletId, given, family,  gender, birthDate, phoneNumber, county, subCounty, ward, village, otp, crId });
     await patientRepo.save(patient);
     res.status(201).json(patient);
+    } else {
+      console.log(`Found existing patient with ID: ${nationalId}`);
+      res.status(201).json(existingPatient);
+    }
   } catch (error) {
     next(error);
   }
