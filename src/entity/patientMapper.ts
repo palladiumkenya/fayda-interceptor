@@ -340,7 +340,7 @@ return {
                                     "valueString": "KAPLAMAI"
                                 }
                             ],
-                            "city": "TRANS NZOIA",
+                            "city": patient.county,
                             "country": "Kenya"
                         },
                         "gender": "male"
