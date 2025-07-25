@@ -23,7 +23,14 @@ export async function getPatient(
     next(error);
   }
 }
-
+function generateCode(length = 10) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let code = '';
+  for (let i = 0; i < length; i++) {
+    code += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return `${code}-3`;
+}
 export async function createPatient(
   req: Request,
   res: Response,
@@ -35,8 +42,10 @@ export async function createPatient(
     const uuid = crypto.randomUUID();
     const householdNumber = `HH${Math.floor(1e9 + Math.random() * 9e9)}`;
     const walletId = Math.floor(1e12 + Math.random() * 9e12).toString();
+    const crId = generateCode();
+
     // const createdAt = new Date().toISOString();
-    const patient = patientRepo.create({ nationalId, uuid, shaNumber, householdNumber, walletId, given, family,  gender, birthDate, phoneNumber, county, subCounty, ward, village, otp });
+    const patient = patientRepo.create({ nationalId, uuid, shaNumber, householdNumber, walletId, given, family,  gender, birthDate, phoneNumber, county, subCounty, ward, village, otp, crId });
     await patientRepo.save(patient);
     res.status(201).json(patient);
   } catch (error) {

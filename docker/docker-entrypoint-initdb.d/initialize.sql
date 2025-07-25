@@ -7,6 +7,7 @@ CREATE SEQUENCE "public"."patient_id_seq"
 
 CREATE TABLE "public"."patient"(
    "id" integer DEFAULT nextval('public.patient_id_seq'::regclass) NOT NULL,
+   "crId" character varying(150) NOT NULL,
    "nationalId" character varying(150) NOT NULL,
    "shaNumber" character varying(150) NOT NULL,
    "householdNumber" character varying(150) NOT NULL,

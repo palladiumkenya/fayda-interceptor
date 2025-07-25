@@ -19,7 +19,7 @@ return {
         {
             "resource": {
                 "resourceType": "Patient",
-                "id": patient.id,
+                "id": patient.crId,
                 "extension": [
                     {
                         "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/person_with_disability",

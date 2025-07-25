@@ -6,6 +6,9 @@ export class Patient {
   id: number;
 
   @Column()
+  crId: string;
+
+  @Column()
   nationalId: string;
 
   @Column()
