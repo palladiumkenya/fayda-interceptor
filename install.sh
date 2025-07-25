@@ -1,4 +1,6 @@
 #!/bin/bash
 
+echo "Building interceptor stack"
+docker compose build --no-cache
 echo "Starting interceptor stack"
-docker compose up --build -d
+docker compose up -d
