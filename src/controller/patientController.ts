@@ -21,7 +21,7 @@ export async function getPatient(
     const host = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
     const origin = req.get('origin');
 
-    console.log('origin', origin);
+    console.log('req', req);
     const patient = await patientRepo.findOneBy({ nationalId: identifierNumber });
     if (!patient) {
       res.status(404).json({ message: "Not found" });
@@ -29,15 +29,15 @@ export async function getPatient(
       const patientResource = patientMapper(patient);
       res.status(200).json(patientResource);
           // relay patient info to Openfn
-          // const delay = appProperties.openFnRelayDelay;
-          // console.log(`waiting for ${delay}ms.....`);
-          // await wait(delay);
-          //   const response = await forwardPatientLookup({
-          //   identifierType: 'National ID',
-          //   identifierNumber: patient.nationalId,
-          //   patient: patientResource
-          // });
-          // console.log('delayed openfn response', response);
+          const delay = appProperties.openFnRelayDelay;
+          console.log(`waiting for ${delay}ms.....`);
+          await wait(delay);
+            const response = await forwardPatientLookup({
+            identifierType: 'National ID',
+            identifierNumber: patient.nationalId,
+            patient: patientResource
+          });
+          console.log('delayed openfn response', response);
     }
   } catch (error) {
     next(error);

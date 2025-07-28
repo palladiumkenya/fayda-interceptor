@@ -12,7 +12,7 @@ return {
     "link": [
         {
             "relation": "self",
-            "url": `https://hie-professionals-registry-service/facade/fhir/Patient?identifierNumber=${patient.nationalId}&identifierType=National%20ID`
+            "url": `https://bethelhospital.hmislocal.org/openmrs/ws/fhir2/R4/Patient?identifier=${patient.nationalId}`
         }
     ],
     "entry": [
