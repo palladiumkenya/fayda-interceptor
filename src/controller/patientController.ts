@@ -20,8 +20,11 @@ export async function getPatient(
   try {
     const host = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
     const origin = req.get('origin');
+    const headers = req.headers;
 
-    console.log('req', req);
+    console.log('host', host);
+    console.log('origin', origin);
+    console.log('headers', headers);
     const patient = await patientRepo.findOneBy({ nationalId: identifierNumber });
     if (!patient) {
       res.status(404).json({ message: "Not found" });
