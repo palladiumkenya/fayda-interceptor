@@ -108,11 +108,18 @@ export function patientMapper(patient: Patient) {
                     {
                         "extension": [
                             {
-                                "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/patients-village_estate",
-                                "valueString": patient.village
+                                "url": "http://fhir.openmrs.org/ext/address",
+                                "extension": [
+                                    {
+                                        "url": "http://fhir.openmrs.org/ext/address#address4",
+                                        "valueString": "Mihango"
+                                    }
+                                ]
                             }
                         ],
-                        "country": "Kenya"
+                        "country": "Kenya",
+                        "state": "Embakasi East",
+                        "use": "home"
                     }
                 ],
                 "maritalStatus": {
@@ -123,233 +130,7 @@ export function patientMapper(patient: Patient) {
                             "display": "Single"
                         }
                     ]
-                },
-                // "contact": [
-                //     {
-                //         "id": "CR1081722092387-4",
-                //         "extension": [
-                //             {
-                //                 "url": "identifiers",
-                //                 "valueIdentifier": {
-                //                     "use": "official",
-                //                     "type": {
-                //                         "coding": [
-                //                             {
-                //                                 "system": "https://ts.kenya-hie.health/Codesystem/identifier-types",
-                //                                 "code": "birth-certificate",
-                //                                 "display": "Birth Certificate"
-                //                             }
-                //                         ]
-                //                     },
-                //                     "value": "897986455"
-                //                 }
-                //             },
-                //             {
-                //                 "url": "identifiers",
-                //                 "valueIdentifier": {
-                //                     "use": "official",
-                //                     "type": {
-                //                         "coding": [
-                //                             {
-                //                                 "system": "https://ts.kenya-hie.health/Codesystem/identifier-types",
-                //                                 "code": "sha-number",
-                //                                 "display": "SHA Number"
-                //                             }
-                //                         ]
-                //                     },
-                //                     "value": "SHA1081722092387-4"
-                //                 }
-                //             },
-                //             {
-                //                 "url": "identifiers",
-                //                 "valueIdentifier": {
-                //                     "use": "official",
-                //                     "type": {
-                //                         "coding": [
-                //                             {
-                //                                 "system": "https://ts.kenya-hie.health/Codesystem/identifier-types",
-                //                                 "code": "household-number",
-                //                                 "display": "Household Number"
-                //                             }
-                //                         ]
-                //                     },
-                //                     "value": "BY32923183-3"
-                //                 }
-                //             },
-                //             {
-                //                 "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/date_of_birth",
-                //                 "valueString": "2023-11-09"
-                //             },
-                //             {
-                //                 "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/person_with_disability",
-                //                 "valueString": "0"
-                //             },
-                //             {
-                //                 "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/preferred_primary_care_network",
-                //                 "valueString": "ruaraka"
-                //             },
-                //             {
-                //                 "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/disability_category",
-                //                 "valueString": "physical"
-                //             },
-                //             {
-                //                 "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/disability_subcategory",
-                //                 "valueString": "test"
-                //             },
-                //             {
-                //                 "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/disability_cause",
-                //                 "valueString": "test"
-                //             }
-                //         ],
-                //         "relationship": [
-                //             {
-                //                 "coding": [
-                //                     {
-                //                         "system": "https://ts.kenya-hie.health/Codesystem/relationship-types",
-                //                         "code": "spouse",
-                //                         "display": "Spouse"
-                //                     }
-                //                 ]
-                //             }
-                //         ],
-                //         "name": {
-                //             "text": "  TEO SUR NANO",
-                //             "family": "NANO",
-                //             "given": [
-                //                 "TEO",
-                //                 "SUR"
-                //             ]
-                //         },
-                //         "telecom": [
-                //             {
-                //                 "system": "email",
-                //                 "value": "jecihjoy@gmail.com"
-                //             },
-                //             {
-                //                 "system": "phone",
-                //                 "value": "0110525722"
-                //             }
-                //         ],
-                //         "address": {
-                //             "extension": [
-                //                 {
-                //                     "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/patients-county",
-                //                     "valueString": "Kenya"
-                //                 },
-                //                 {
-                //                     "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/patients-sub-county",
-                //                     "valueString": "CHERANGANY"
-                //                 },
-                //                 {
-                //                     "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/patients-ward",
-                //                     "valueString": "KAPLAMAI"
-                //                 },
-                //                 {
-                //                     "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/patients-village_estate",
-                //                     "valueString": "Ngeria"
-                //                 }
-                //             ],
-                //             "city": "TRANS NZOIA",
-                //             "country": "Kenya"
-                //         },
-                //         "gender": "male"
-                //     },
-                //     {
-                //         "id": "CR1414360658694-6",
-                //         "extension": [
-                //             {
-                //                 "url": "identifiers",
-                //                 "valueIdentifier": {
-                //                     "use": "official",
-                //                     "type": {
-                //                         "coding": [
-                //                             {
-                //                                 "system": "https://ts.kenya-hie.health/Codesystem/identifier-types",
-                //                                 "code": "birth-certificate",
-                //                                 "display": "Birth Certificate"
-                //                             }
-                //                         ]
-                //                     },
-                //                     "value": "99999999"
-                //                 }
-                //             },
-                //             {
-                //                 "url": "identifiers",
-                //                 "valueIdentifier": {
-                //                     "use": "official",
-                //                     "type": {
-                //                         "coding": [
-                //                             {
-                //                                 "system": "https://ts.kenya-hie.health/Codesystem/identifier-types",
-                //                                 "code": "sha-number",
-                //                                 "display": "SHA Number"
-                //                             }
-                //                         ]
-                //                     },
-                //                     "value": "SHA1414360658694-6"
-                //                 }
-                //             },
-                //             {
-                //                 "url": "identifiers",
-                //                 "valueIdentifier": {
-                //                     "use": "official",
-                //                     "type": {
-                //                         "coding": [
-                //                             {
-                //                                 "system": "https://ts.kenya-hie.health/Codesystem/identifier-types",
-                //                                 "code": "household-number",
-                //                                 "display": "Household Number"
-                //                             }
-                //                         ]
-                //                     },
-                //                     "value": "BY32923183-3"
-                //                 }
-                //             },
-                //             {
-                //                 "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/date_of_birth",
-                //                 "valueString": "2023-11-14"
-                //             },
-                //             {
-                //                 "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/person_with_disability",
-                //                 "valueString": "0"
-                //             }
-                //         ],
-                //         "relationship": [
-                //             {
-                //                 "coding": [
-                //                     {
-                //                         "system": "https://ts.kenya-hie.health/Codesystem/relationship-types",
-                //                         "code": "child",
-                //                         "display": "Child"
-                //                     }
-                //                 ]
-                //             }
-                //         ],
-                //         "name": {
-                //             "text": "  NENO NENO NENO",
-                //             "family": "NENO",
-                //             "given": [
-                //                 "NENO",
-                //                 "NENO"
-                //             ]
-                //         },
-                //         "address": {
-                //             "extension": [
-                //                 {
-                //                     "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/patients-sub-county",
-                //                     "valueString": "CHERANGANY"
-                //                 },
-                //                 {
-                //                     "url": "https://ts.kenya-hie.health/fhir/StructureDefinition/patients-ward",
-                //                     "valueString": "KAPLAMAI"
-                //                 }
-                //             ],
-                //             "city": patient.county,
-                //             "country": "Kenya"
-                //         },
-                //         "gender": "male"
-                //     }
-                // ]
+                }
             }
         }
 }

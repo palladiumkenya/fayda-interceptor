@@ -27,6 +27,8 @@ export async function getPatients(
     if (results) {
       const formatedPatients = results.map(result => patientMapper(result));
       res.status(200).json(bundleWrapper(formatedPatients, total));
+    } else {
+      res.status(404).json({ message: "Not found" });
     }
   } catch (error) {
      next(error);
