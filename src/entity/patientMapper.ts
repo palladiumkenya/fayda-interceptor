@@ -104,25 +104,25 @@ export function patientMapper(patient: Patient) {
                 ],
                 "gender": patient.gender,
                 "birthDate": patient.birthDate,
-                "address": [
-                    {
-                        "extension": [
-                            {
-                                "url": "http://fhir.openmrs.org/ext/address",
-                                "extension": [
-                                    {
-                                        "url": "http://fhir.openmrs.org/ext/address#address4",
-                                        "valueString": "Mihango"
-                                    }
-                                ]
-                            }
-                        ],
-                        "country": "Kenya",
-                        "state": "Embakasi East",
-                        "district": "Nairobi",
-                        "use": "home"
-                    }
-                ],
+                // "address": [
+                //     {
+                //         "extension": [
+                //             {
+                //                 "url": "http://fhir.openmrs.org/ext/address",
+                //                 "extension": [
+                //                     {
+                //                         "url": "http://fhir.openmrs.org/ext/address#address4",
+                //                         "valueString": "Mihango"
+                //                     }
+                //                 ]
+                //             }
+                //         ],
+                //         "country": "Kenya",
+                //         "state": "Embakasi East",
+                //         "district": "Nairobi",
+                //         "use": "home"
+                //     }
+                // ],
                 "maritalStatus": {
                     "coding": [
                         {
