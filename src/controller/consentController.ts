@@ -4,10 +4,6 @@ import { AppDataSource } from '../dataSource';
 
 const patientRepo = AppDataSource.getRepository(Patient);
 
-function wait(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 export async function requestOtp(req: Request, res: Response, next: NextFunction) {
     console.log('Request OTP payload', req.body)
     try {

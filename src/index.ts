@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import { AppDataSource } from './dataSource';
 import patientRoutes from './routes/patientRoute';
 import consentRoute from './routes/consentRoute';
@@ -26,7 +26,7 @@ app.listen(port, () => {
 });
 
 // error handler
-app.use(function (err: Error, req: Request, res: Response, next: NextFunction) {
+app.use(function (err: Error, req: Request, res: Response) {
   const message = res.locals.message || err.message
   const status = res.locals.status  || 500
   console.log(`${message}: ${err.stack}`)

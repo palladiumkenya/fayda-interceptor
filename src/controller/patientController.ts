@@ -1,16 +1,38 @@
 import { Request, Response, NextFunction } from "express";
 import { AppDataSource } from "../dataSource";
 import { Patient } from "../entity/Patient";
-import { patientMapper } from "../entity/patientMapper";
+import { patientMapper, bundleWrapper } from "../entity/patientMapper";
 import { forwardPatientLookup } from '../service/openfnRelay';
-
 import appProperties from '../appProperties';
+
 const patientRepo = AppDataSource.getRepository(Patient);
 
-function wait(ms) {
+function wait(ms:number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+export async function getPatients(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const page = 1;
+  const pageSize = 10;
+  try {
+    const [results, total] = await patientRepo.findAndCount({
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+    });
+    console.log(`Found ${total} patients`);
+    if (results) {
+      const formatedPatients = results.map(result => patientMapper(result));
+      res.status(200).json(bundleWrapper(formatedPatients, total));
+    }
+  } catch (error) {
+     next(error);
+  }
+  
+}
 export async function getPatient(
   req: Request,
   res: Response,
@@ -30,9 +52,11 @@ export async function getPatient(
       res.status(404).json({ message: "Not found" });
     } else {
       const patientResource = patientMapper(patient);
-      res.status(200).json(patientResource);
+      const resources = bundleWrapper([patientResource], 1);
+
+      res.status(200).json(resources);
           // relay patient info to Openfn
-          const delay = appProperties.openFnRelayDelay;
+          const delay = Number(appProperties.openFnRelayDelay);
           console.log(`waiting for ${delay}ms.....`);
           await wait(delay);
             const response = await forwardPatientLookup({

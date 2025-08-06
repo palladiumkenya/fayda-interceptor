@@ -3,55 +3,55 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 @Entity()
 export class Patient {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  crId: string;
+  crId!: string;
 
   @Column()
-  nationalId: string;
+  nationalId!: string;
 
   @Column()
-  shaNumber: string;
+  shaNumber!: string;
 
   @Column()
-  householdNumber: string;
+  householdNumber!: string;
   
   @Column()
-  walletId: string;
+  walletId!: string;
 
   @Column()
-  family: string;
+  family!: string;
 
   @Column()
-  given: string;
+  given!: string;
 
   @Column()
-  birthDate: Date;
+  birthDate!: Date;
 
   @Column()
-  gender: string;
+  gender!: string;
 
   @Column()
-  phoneNumber: string;
+  phoneNumber!: string;
 
   @Column()
-  county: string;
+  county!: string;
 
   @Column()
-  subCounty: string;
+  subCounty!: string;
   
   @Column()
-  ward: string;
+  ward!: string;
 
   @Column()
-  village: string;
+  village!: string;
   
   @Column()
-  uuid: string;
+  uuid!: string;
 
   @Column()
-  otp: string;
+  otp!: string;
 
   @Column()
   createdAt?: Date;

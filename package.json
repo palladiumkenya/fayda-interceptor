@@ -7,19 +7,27 @@
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "serve": "node dist/index.js"
+    "serve": "node dist/index.js",
+    "lint": "eslint . --ext .ts"
   },
   "author": "nthusi",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@eslint/js": "^9.32.0",
     "@types/axios": "^0.14.4",
     "@types/express": "^5.0.3",
     "@types/node": "^22.15.30",
+    "@typescript-eslint/eslint-plugin": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.0",
+    "eslint": "^9.32.0",
     "express": "^5.1.0",
+    "globals": "^16.3.0",
+    "jiti": "^2.5.1",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.39.0"
   },
   "dependencies": {
     "africastalking": "^0.7.3",
