@@ -119,6 +119,7 @@ export function patientMapper(patient: Patient) {
                         ],
                         "country": "Kenya",
                         "state": "Embakasi East",
+                        "district": "Nairobi",
                         "use": "home"
                     }
                 ],
