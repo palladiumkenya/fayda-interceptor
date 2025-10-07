@@ -42,13 +42,6 @@ export async function getPatient(
 ) {
   const identifierNumber = req.query.identifierNumber as string;
   try {
-    const host = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-    const origin = req.get('origin');
-    const headers = req.headers;
-
-    console.log('host', host);
-    console.log('origin', origin);
-    console.log('headers', headers);
     const patient = await patientRepo.findOneBy({ nationalId: identifierNumber });
     if (!patient) {
       res.status(404).json({ message: "Not found" });
