@@ -82,7 +82,7 @@ export async function createPatient(
     const { nationalId, given, family,  gender, birthDate, phoneNumber, county, subCounty, ward, village, otp } = req.body;
     const existingPatient = await patientRepo.findOneBy({ nationalId });
     if(!existingPatient) {
-    const shaNumber = `SHA${Math.floor(10000000 + Math.random() * 90000000)}-4`;
+    const shaNumber = `CBHI${Math.floor(10000000 + Math.random() * 90000000)}-4`;
     const uuid = crypto.randomUUID();
     const householdNumber = `HH${Math.floor(1e9 + Math.random() * 9e9)}`;
     const walletId = Math.floor(1e12 + Math.random() * 9e12).toString();
